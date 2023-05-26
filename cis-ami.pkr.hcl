@@ -29,6 +29,9 @@ variable "vpc_id" {
 variable "subnet_id" {
   type = string
 }
+variable "security_group_id" {
+  type = string
+}
 variable "instance_type" {
   type = string
   default = "t3.micro"
@@ -58,12 +61,13 @@ source "amazon-ebs" "cis-ami" {
   region        = "${var.region}"
   vpc_id        = "${var.vpc_id}"
   subnet_id     = "${var.subnet_id}"
-  associate_public_ip_address = "true"
+  // associate_public_ip_address = "true"
 
   // Amazon Linux 2 AMI ID
   source_ami    = "${var.source_ami}"
   ssh_username  = "ec2-user"
-
+  security_group_id  = "${var.security_group_id}"
+  # Set the SSH-related configurations
   // Set the AMI's Name tag with timestamp
   tag {
     key         = "Name"
@@ -84,6 +88,7 @@ source "amazon-ebs" "cis-ami" {
 build {
   sources = ["source.amazon-ebs.cis-ami"]
 
+  
   provisioner "file"{
     source = "./files"
     destination = "/tmp"
@@ -96,5 +101,4 @@ build {
   provisioner "shell" {
     script = "./scripts/install.sh"
   }
-
 }

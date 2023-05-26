@@ -1,9 +1,10 @@
 {
     "profile": "Stage",
     "region": "ap-south-1",
-    "source_ami": "ami-02f1f5fd71a212a15",
-    "vpc_id": "vpc-0978881082db39762",
-    "subnet_id": "subnet-09e1f359dc76b3724",
+    "source_ami": "ami-0795d9db041657612",
+    "vpc_id": "",
+    "subnet_id": "",
+    "security_group_id":"",
     "instance_type": "t3a.medium",
-    "ami_name_prefix": "cis-hardened-aws-ami-Keerthik"
+    "ami_name_prefix": "cis-aws-ami-1.24-pkr-hardened"
 }
